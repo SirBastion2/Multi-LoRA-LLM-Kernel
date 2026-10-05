@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61", "wheel", "torch"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "persona-serve"
+version = "0.1.0"
+description = "Multi-personality LoRA serving with custom BGMV CUDA kernels"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "torch",
+    "safetensors",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "transformers",
+    "peft",
+    "accelerate",
+    "bitsandbytes",
+]
+demo = [
+    "fastapi",
+    "uvicorn[standard]",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "cuda: requires CUDA GPU",
+]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["persona*"]
