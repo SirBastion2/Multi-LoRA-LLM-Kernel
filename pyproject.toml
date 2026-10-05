@@ -22,11 +22,6 @@ dev = [
     "accelerate",
     "bitsandbytes",
 ]
-demo = [
-    "fastapi",
-    "uvicorn[standard]",
-]
-
 [tool.pytest.ini_options]
 markers = [
     "cuda: requires CUDA GPU",
