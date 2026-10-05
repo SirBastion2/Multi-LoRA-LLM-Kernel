@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "device": "NVIDIA GeForce RTX 3060",
+    "time_local": "2026-10-05 14:34:12 EDT",
+    "nvidia_smi": "NVIDIA GeForce RTX 3060, 12288 MiB, 532 MiB, 11428 MiB, 615.71.09",
+    "transformers": "5.18.0",
+    "peft": "0.21.2",
+    "bitsandbytes": "0.50.2",
+    "has_cuda_ops": true
+  },
+  "rows": [
+    {
+      "mode": "peft_d1",
+      "wall_s": 2.567689946000428,
+      "new_tokens": 64,
+      "tok_per_s": 24.92512777864393,
+      "batch": 1,
+      "persona": "coach"
+    },
+    {
+      "mode": "peft_seq_item",
+      "persona": "coach",
+      "wall_s": 2.588874308999948,
+      "load_s": 0.0,
+      "new_tokens": 64,
+      "tok_per_s": 24.721169265541693
+    },
+    {
+      "mode": "peft_seq_item",
+      "persona": "tutor",
+      "wall_s": 2.5975978670003315,
+      "load_s": 0.23509996500069974,
+      "new_tokens": 64,
+      "tok_per_s": 24.638147733739203
+    },
+    {
+      "mode": "peft_seq_item",
+      "persona": "sarcastic",
+      "wall_s": 2.6100240740006484,
+      "load_s": 1.3088459099999454,
+      "new_tokens": 64,
+      "tok_per_s": 24.5208466226523
+    },
+    {
+      "mode": "peft_seq_item",
+      "persona": "calm",
+      "wall_s": 2.6226630669998485,
+      "load_s": 0.26371372699941276,
+      "new_tokens": 64,
+      "tok_per_s": 24.402677112928473
+    },
+    {
+      "mode": "peft_sequential_total",
+      "D": 4,
+      "wall_s": 12.226818919000834,
+      "new_tokens": 256,
+      "tok_per_s": 20.937580060351472
+    },
+    {
+      "mode": "peft_same_adapter_batch",
+      "wall_s": 5.225706760999856,
+      "new_tokens": 256,
+      "tok_per_s": 48.98858885664271,
+      "batch": 4
+    }
+  ]
+}

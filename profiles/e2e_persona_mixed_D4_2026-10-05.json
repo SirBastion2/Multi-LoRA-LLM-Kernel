@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "device": "NVIDIA GeForce RTX 3060",
+    "time_local": "2026-10-05 14:49:29 EDT",
+    "nvidia_smi": "NVIDIA GeForce RTX 3060, 12288 MiB, 532 MiB, 11428 MiB, 615.71.09",
+    "transformers": "5.18.0",
+    "peft": "0.21.2",
+    "bitsandbytes": "0.50.2",
+    "has_cuda_ops": true
+  },
+  "rows": [
+    {
+      "mode": "persona_mixed_D1",
+      "D": 1,
+      "batch": 1,
+      "wall_s": 2.8166750330001378,
+      "new_tokens": 64,
+      "tok_per_s": 22.721826000577494,
+      "slots": [
+        7
+      ],
+      "personas": [
+        "coach"
+      ],
+      "peak_allocated_gb": 4.934
+    },
+    {
+      "mode": "persona_mixed_D4",
+      "D": 4,
+      "batch": 4,
+      "wall_s": 7.6992516110003635,
+      "new_tokens": 256,
+      "tok_per_s": 33.24998492505922,
+      "slots": [
+        7,
+        6,
+        5,
+        4
+      ],
+      "personas": [
+        "coach",
+        "tutor",
+        "sarcastic",
+        "calm"
+      ],
+      "peak_allocated_gb": 5.092,
+      "new_tokens_raw_overcount": 266,
+      "token_count_note": "token count corrected: left-pad overcount fixed; wall_s unchanged"
+    },
+    {
+      "mode": "persona_same_adapter_batch",
+      "D": 1,
+      "batch": 4,
+      "wall_s": 6.496097713999916,
+      "new_tokens": 256,
+      "tok_per_s": 39.40827420872803,
+      "peak_allocated_gb": 5.092
+    }
+  ]
+}

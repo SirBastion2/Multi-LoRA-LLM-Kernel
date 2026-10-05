@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "device": "NVIDIA GeForce RTX 3060",
+    "has_cuda_ops": true,
+    "time_unix": 1791224182.7331479,
+    "nvidia_smi": "NVIDIA GeForce RTX 3060, 12288 MiB, 860 MiB, 11100 MiB, 615.71.09",
+    "git": "not-a-git-repo"
+  },
+  "rows": [
+    {
+      "kind": "step_proxy",
+      "D": 1,
+      "T": 8,
+      "R": 16,
+      "layers": 32,
+      "modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "mean_ms": 46.026275634765625,
+      "std_ms": 5.390013302964851,
+      "mode": "cuda"
+    },
+    {
+      "kind": "step_proxy",
+      "D": 4,
+      "T": 8,
+      "R": 16,
+      "layers": 32,
+      "modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "mean_ms": 40.53695398966472,
+      "std_ms": 1.1324371787694558,
+      "mode": "cuda"
+    }
+  ]
+}

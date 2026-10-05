@@ -1,0 +1,6 @@
+torch 2.6.0+cu124 cuda 12.4
+device NVIDIA GeForce RTX 3060
+has_cuda_ops True
+transformers 5.18.0
+peft 0.21.2
+bnb 0.50.2
