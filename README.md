@@ -27,3 +27,7 @@ Higher tokens/s is better (more tokens generated per second).
 Kernel-only adapter op stays ~0.19 ms from 1→8 distinct adapters (launch-bound at this shape).
 
 Full tables, methodology, and profile JSON: [docs/BENCHMARKS.md](docs/BENCHMARKS.md).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
