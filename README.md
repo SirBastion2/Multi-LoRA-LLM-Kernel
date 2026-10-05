@@ -1,75 +1,27 @@
-# Persona-Serve
-Multi-personality LLM serving on a single consumer GPU: one shared 4-bit Mistral-7B base and many LoRA “personality” adapters in one mixed decode batch. Custom CUDA **BGMV** (batched gather matrix–vector) kernels apply each request’s adapter inside shared kernel launches.
+# Multi-LoRA LLM Kernel
 
-**Owner:** Sebastian Villalba  
-**Target hardware:** NVIDIA GeForce RTX 3060 12 GB (Ampere 8.6), **CachyOS** (native Linux)  
-**Benchmarks (RTX 3060):** [docs/BENCHMARKS.md](docs/BENCHMARKS.md) — micro µs vs D, PEFT sequential/same-batch, and **true mixed-adapter** BGMV e2e.
+I built custom CUDA **BGMV** (batched gather matrix–vector) kernels so multiple LoRA adapters can run in **one mixed decode batch** on a single shared NF4 [Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2) base — without loading a full copy of the model per adapter.
 
-## Quick start (development)
+**Hardware:** NVIDIA GeForce RTX 3060 (12 GB), CachyOS Linux  
+**Owner:** Sebastian Villalba
 
-### 1. Environment (micromamba)
+## What I did
 
-Detailed pins and CachyOS notes live in `env/`. Summary:
+- Wrote BGMV CUDA kernels (shrink / expand) and Python bindings for applying the right LoRA adapter to each row in a batch inside shared kernel launches.
+- Built an adapter pool, Multi-LoRA linear layers, and NF4 model patching so several adapters live in one GPU pool on the shared base.
+- Measured end-to-end generate throughput against Hugging Face PEFT sequential serving, and kernel micro-timings that stay flat as adapter count grows.
 
-```bash
-micromamba create -n persona -c conda-forge python=3.12
-micromamba activate persona
-# Install PyTorch for your CUDA build — see https://pytorch.org
-pip install -e ".[dev]"
-pytest tests/ -m "not cuda"   # CPU reference tests
-```
+Adapters used for these numbers were **synthetic** (correct shapes, random weights). This is an engineering / throughput result, not a persona-quality eval.
 
-Use a **separate** `vllm-baseline` env for vLLM (see `env/README.md`). Do not mix vLLM’s pinned PyTorch with the persona env.
+## Benchmarks (RTX 3060)
 
-### 2. Build CUDA extension
+| Scenario | Throughput |
+|----------|------------|
+| PEFT: four adapters, one after another | ~21 tokens/s |
+| **My path: four different adapters in one batch** | **~33 tokens/s** (~1.6× sequential PEFT) |
+| **My path: eight different adapters in one batch** | **~56 tokens/s** (fits in 12 GB) |
+| Same adapter, batched (upper bound) | ~39–67 tokens/s |
 
-On the owner machine (GPU + matching `nvcc`):
+Kernel-only adapter op stays ~0.19 ms from 1→8 distinct adapters (launch-bound at this shape).
 
-```bash
-export CUDA_HOME="$CONDA_PREFIX"
-export TORCH_CUDA_ARCH_LIST="8.6"
-export NVCC_PREPEND_FLAGS="-ccbin $CXX"
-pip install -e .
-python -c "import torch; import persona; print('ok', torch.cuda.is_available())"
-```
-
-### 3. Random adapters (no Mistral weights required)
-
-```bash
-python adapters/make_random_adapters.py --out adapters/random --num-adapters 4 --rank 16
-```
-
-### 4. Standalone C++/CUDA harness (no Python)
-
-```bash
-cd standalone && mkdir -p build && cd build
-cmake .. -DCMAKE_CUDA_ARCHITECTURES=86 -DCMAKE_CUDA_HOST_COMPILER="$CXX"
-cmake --build .
-```
-
-### 5. Demo (stub)
-
-```bash
-pip install fastapi uvicorn
-uvicorn demo.server:app --host 127.0.0.1 --port 9847
-```
-
-The demo does **not** load Mistral weights in this scaffold; it shows the API shape for multi-pane chat.
-
-## Benchmarks and claims
-
-- **Do not trust headline numbers in this README until they appear in WORKLOG.md** with environment metadata and commit hash.
-- GPU microbenchmarks and Nsight runs are intended for the owner’s **RTX 3060 on CachyOS**, not this cloud scaffold environment.
-- Primary system metric (per architecture): **LoRA overhead per decode step** = step time with LoRA minus step with `LoRAContext.enabled = False`.
-
-## Tests
-
-```bash
-pytest tests/
-```
-
-CUDA kernel tests skip automatically when no GPU is available (`pytest -m cuda` to run them).
-
-## License
-
-TBD — add before public release.
+Full tables, methodology, and profile JSON: [docs/BENCHMARKS.md](docs/BENCHMARKS.md).
