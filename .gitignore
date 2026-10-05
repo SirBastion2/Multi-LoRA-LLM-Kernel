@@ -7,8 +7,6 @@ dist/
 .eggs/
 standalone/build/
 .env
-env/persona.env
-env/vllm-baseline.env
 profiles/*.nsys-rep
 profiles/*.ncu-rep
 adapters/random/

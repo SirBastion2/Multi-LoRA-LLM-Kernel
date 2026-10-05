@@ -3,9 +3,9 @@ requires = ["setuptools>=61", "wheel", "torch"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "persona-serve"
+name = "multi-lora-llm-kernel"
 version = "0.1.0"
-description = "Multi-personality LoRA serving with custom BGMV CUDA kernels"
+description = "Multi-LoRA serving with custom BGMV CUDA kernels on a shared NF4 base"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

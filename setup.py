@@ -6,11 +6,10 @@ CSRC = [
     "csrc/bgmv_shrink.cu",
     "csrc/bgmv_expand.cu",
     "csrc/gemv_fp16.cu",
-    "csrc/bgmv_fused.cu",
 ]
 
 setup(
-    name="persona-serve",
+    name="multi-lora-llm-kernel",
     version="0.1.0",
     packages=["persona"],
     ext_modules=[

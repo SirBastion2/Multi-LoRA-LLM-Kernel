@@ -26,8 +26,7 @@ class StaticBatchEngine:
     """
     Version 1 static batching: all requests start together; fixed slot per row.
 
-    Requires a patched Hugging Face model and tokenizer on CUDA. This scaffold
-    wires slot assignment and LoRAContext; it does not download Mistral weights.
+    Requires a patched Hugging Face model and tokenizer on CUDA. Wires slot assignment and LoRAContext; it does not download Mistral weights.
 
     Owner setup (CachyOS, persona env):
       1. Load NF4 Mistral.
