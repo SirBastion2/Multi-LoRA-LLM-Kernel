@@ -5,10 +5,6 @@ Multi-personality LLM serving on a single consumer GPU: one shared 4-bit Mistral
 **Target hardware:** NVIDIA GeForce RTX 3060 12 GB (Ampere 8.6), **CachyOS** (native Linux)  
 **Benchmarks (RTX 3060):** [docs/BENCHMARKS.md](docs/BENCHMARKS.md) — micro µs vs D, PEFT sequential/same-batch, and **true mixed-adapter** BGMV e2e.
 
-## Credit (technique, not this repo’s measurements)
-
-The batched-gather LoRA idea comes from **[Punica](https://github.com/punica-ai/punica)** (MLSys 2024) and related work such as **S-LoRA**. Production stacks (vLLM, TensorRT-LLM) ship similar kernels. This project re-implements and measures on consumer hardware; **engineering and numbers are the owner’s** once logged in [WORKLOG.md](WORKLOG.md).
-
 ## Repository map
 
 See section 3.8 in [ARCHITECTURE.md](ARCHITECTURE.md).
