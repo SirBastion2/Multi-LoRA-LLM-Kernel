@@ -58,7 +58,7 @@ Correctness tolerances, surprises, next step.
 | 4 | 0.189 | 0.97x |
 | 8 | 0.191 | 0.98x |
 
-Per-call ~190 µs; D barely moves time → **launch-bound** at this T (matches ARCHITECTURE §2.5). CUDA path ~200 µs vs FP32 ref ~27 ms on same shape.
+Per-call ~190 µs; D barely moves time → **launch-bound** at this T. CUDA path ~200 µs vs FP32 ref ~27 ms on same shape.
 
 **Step LoRA proxy (32 layers × qkvo, T=8):**
 
