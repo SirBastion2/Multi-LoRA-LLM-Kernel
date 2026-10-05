@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+standalone/build/
+.env
+env/persona.env
+env/vllm-baseline.env
+profiles/*.nsys-rep
+profiles/*.ncu-rep
+adapters/random/
+uploads/
+.venv/
