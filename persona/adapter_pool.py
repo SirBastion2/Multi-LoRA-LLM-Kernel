@@ -10,7 +10,7 @@ from typing import Dict, List, Optional, Sequence, Tuple
 import torch
 from safetensors import safe_open
 
-# Mistral-7B module geometry (see ARCHITECTURE.md §2.2)
+# Mistral-7B module geometry
 HIDDEN = 4096
 KV_OUT = 1024
 MLP_INTER = 14336

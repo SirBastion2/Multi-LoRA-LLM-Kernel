@@ -18,7 +18,7 @@ import torch
 
 from persona import ops
 
-# Mistral-7B module geometry (ARCHITECTURE.md §2.2)
+# Mistral-7B module geometry
 SHAPES = {
     "q_proj": (4096, 4096),
     "k_proj": (4096, 1024),
