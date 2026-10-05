@@ -5,10 +5,6 @@ Multi-personality LLM serving on a single consumer GPU: one shared 4-bit Mistral
 **Target hardware:** NVIDIA GeForce RTX 3060 12 GB (Ampere 8.6), **CachyOS** (native Linux)  
 **Benchmarks (RTX 3060):** [docs/BENCHMARKS.md](docs/BENCHMARKS.md) — micro µs vs D, PEFT sequential/same-batch, and **true mixed-adapter** BGMV e2e.
 
-## Repository map
-
-See section 3.8 in [ARCHITECTURE.md](ARCHITECTURE.md).
-
 ## Quick start (development)
 
 ### 1. Environment (micromamba)
