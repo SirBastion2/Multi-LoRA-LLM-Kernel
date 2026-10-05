@@ -8,6 +8,8 @@
 
 ## Results overview
 
+**Higher tokens/s is better** (more tokens generated per second).
+
 This project serves **one shared copy** of a 7B chat model (Mistral) and applies a small LoRA adapter per request, so different "personas" can share one base model.
 
 **Question:** if four or eight requests that each use a **different** adapter run at the same time, does my custom GPU path stay fast?
@@ -36,7 +38,7 @@ This project serves **one shared copy** of a 7B chat model (Mistral) and applies
 | **Mixed-adapter batch** | One batch where **each row uses a different adapter** (the hard case) |
 | **Same-adapter batch** | One batch where **every row uses the same adapter** (easier; usually faster) |
 | **Sequential** | Finish adapter 1, then 2, then 3… (no mixing) |
-| **tokens/s** | Tokens generated per second (higher = faster); aggregate over the whole batch when batching |
+| **tokens/s** | Tokens generated per second — **higher is better**; aggregate over the whole batch when batching |
 | **BGMV** | Batched gather matrix–vector: my custom CUDA kernels that apply the right adapter to each token in one GPU launch |
 | **PEFT** | Hugging Face's standard adapter library (the baseline) |
 | **µs / ms** | Microseconds / milliseconds — used for kernel-only timings |
