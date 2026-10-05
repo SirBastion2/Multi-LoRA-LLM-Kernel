@@ -15,6 +15,8 @@ Adapters used for these numbers were **synthetic** (correct shapes, random weigh
 
 ## Benchmarks (RTX 3060)
 
+Higher tokens/s is better (more tokens generated per second).
+
 | Scenario | Throughput |
 |----------|------------|
 | PEFT: four adapters, one after another | ~21 tokens/s |
